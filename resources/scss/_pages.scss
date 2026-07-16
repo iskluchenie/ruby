@@ -1,0 +1,89 @@
+@use 'variables.scss' as *;
+@use 'typography.scss' as *;
+
+.page-auth-form {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    @media all and (max-width: $widthLarge) {
+        gap: 32px;
+    }
+    @media all and (max-width: $widthMedium) {
+        gap: 24px;
+    }
+    h1 {
+        color: $dark;
+        text-align: center;
+    }
+    form {
+        padding: 0 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        @media all and (max-width: $widthMedium) {
+            gap: 4px;
+            padding: 0;
+        }
+
+        .button-group{
+            display: flex;
+            gap: 24px;
+            justify-content: end;
+            button{
+                @extend .font-h4;
+                padding-right: 24px;
+                padding-left: 24px;
+                //width: 200px;
+            }
+        }
+    }
+
+    .check {
+        margin-left: 16px;
+        margin-bottom: 24px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        button{
+            padding: 0;
+            width: 28px;
+            height: 28px;
+            background: transparent;
+            border: 1px solid $ruby;
+            border-radius: 6px;
+            span{
+                display: grid;
+                justify-content: center;
+                svg{
+                    width: 24px;
+                    height: 24px;
+                    color: $ruby;
+                }
+            }
+        }
+        >span{
+            color: $caption;
+            @extend .font-h5;
+        }
+    }
+    .footnote {
+        padding-top: 48px;
+        padding-left: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        span {
+            color: $caption;
+            padding-right: 12px;
+            @extend .font-h5;
+        }
+        a {
+            @extend .font-h4;
+            color: $ruby;
+            text-align: center;
+        }
+    }
+}

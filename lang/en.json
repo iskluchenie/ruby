@@ -1,0 +1,15 @@
+{
+    "Вход" : "Login",
+    "Регистрация" : "Registration",
+    "Настройки" : "Settings",
+    "Выйти" : "Logout",
+    "Пароль" : "Password",
+    "Запомнить меня" : "Remember me",
+    "Войти" : "Login",
+    "Забыли пароль" : "Forgot your password",
+    "Сброс пароля" : "Reset password",
+    "Нет учетной записи" : "No account",
+    "Настройки профиля" : "Profile settings",
+    "Сохранить" : "Save",
+    "Отмена" : "Cancel"
+}

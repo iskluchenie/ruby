@@ -1,0 +1,16 @@
+@mixin flex-with-padding($padding) {
+    display: flex;
+    gap: $padding;
+    align-items: center;
+}
+@mixin rounded {
+    border-radius: 1000px;
+}
+@mixin icon($color, $size) {
+    svg {
+        display: block;
+        color: $color;
+        width: $size;
+        height: $size;
+    }
+}

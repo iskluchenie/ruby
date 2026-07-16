@@ -1,0 +1,284 @@
+@use "variables" as *;
+@use "mixins" as *;
+@use "typography" as *;
+
+@mixin button {
+    height: 42px;
+    box-sizing: border-box;
+    padding: 10px;
+    cursor: pointer;
+    @extend .font-button;
+    border-radius: $border-radius;
+    @include flex-with-padding(12px);
+    justify-content: center;
+}
+.button-stroke-blue {
+    @include button;
+    @include icon($blue, 24px);
+    color: $blue;
+    background: $white;
+    border: 1px solid $blue;
+    &:hover {
+        background: $blue;
+        color: $white;
+        @include icon($white, 24px);
+    }
+    span {
+        white-space: nowrap;
+    }
+}
+.button-blue {
+    @include button;
+    @include icon($white, 24px);
+    color: $white;
+    background: rgba($blue, 0.7);
+    &:hover {
+        color: $blue;
+        background: $white;
+        border: 1px solid $blue;
+        svg {
+            color: $blue;
+        }
+    }
+}
+.button-stroke-ruby {
+    @include button;
+    @include icon($ruby, 24px);
+    color: $ruby;
+    background: $white;
+    border: 1px solid $ruby;
+    &:hover {
+        background: $ruby;
+        color: $white;
+        @include icon($white, 24px);
+    }
+    span {
+        white-space: nowrap;
+    }
+}
+.button-ruby {
+    @include button;
+    @include icon($white, 24px);
+    color: $white;
+    background: rgba($ruby, 0.7);
+    &:hover {
+        color: $ruby;
+        background: $white;
+        border: 1px solid $ruby;
+        svg {
+            color: $ruby;
+        }
+    }
+}
+.input-with-icon, .input-text-area{
+    border: 1px solid $ruby;
+    .input-error {
+        display: none;
+    }
+    &.error {
+        border-color: $red;
+        svg {
+            color: $red;
+        }
+        div {
+            input {
+                &::placeholder {
+                    color: rgba($red, 0.4);
+                }
+            }
+            .font-very-small {
+                color: $red;
+            }
+            .radios-group {
+                label {
+                    color: $red;
+                }
+            }
+        }
+        .input-error {
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: -23px;
+            color: $red;
+        }
+    }
+}
+.input-with-icon {
+    min-height: 56px;
+    border-radius: $border-radius;
+    padding: 2px 16px;
+    margin-bottom: 24px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: start;
+    background: $white;
+    @include flex-with-padding(16px);
+    @include icon($ruby, 32px);
+    @media all and (max-width: $widthMob) {
+        min-height: 50px;
+        padding: 2px 12px;
+        gap: 12px;
+    }
+    &.disable {
+        border: 1px solid $grey;
+        svg {
+            color: $grey;
+        }
+        div {
+            input {
+                &::placeholder {
+                    color: transparent;
+                }
+            }
+        }
+    }
+    .font-very-small {
+        display: none;
+        color: $dark;
+        @extend .font-small;
+    }
+    div {
+        width: 100%;
+        input {
+            width: 100%;
+            padding: 0;
+            border: none;
+            outline: none;
+            color: $black;
+            background: transparent;
+            @extend .font-h5;
+            &::placeholder {
+                color: $dark;
+            }
+            &:autofill{
+                -webkit-box-shadow: inset 0 0 0 1000px $lightyellow !important;
+            }
+
+        }
+    }
+    &:has(input:focus),
+    &:has(.input-lang:not(:placeholder-shown)) {
+        .font-very-small {
+            display: block;
+        }
+        input {
+            &::placeholder {
+                color: transparent !important;
+            }
+        }
+    }
+    &:has(.input-single:not(:placeholder-shown)) {
+        .font-very-small {
+            display: block;
+        }
+        input {
+            &::placeholder {
+                color: transparent !important;
+            }
+        }
+    }
+    &:not(&.error):has(input:focus) {
+        border-color: $ruby;
+        .font-very-small {
+            color: $ruby;
+        }
+    }
+    &:has(input:autofill){
+        background: $lightyellow;
+    }
+}
+.input-text-area {
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: start;
+    background: $white;
+    color: $ruby;
+    &.disable {
+        border: 1px solid $grey;
+    }
+    &:has(textarea:focus) {
+        border-color: $ruby;
+    }
+    &.error {
+        textarea{
+            &::placeholder {
+                color: rgba($red, 0.4);
+            }
+        }
+    }
+    @supports not selector(::-webkit-scrollbar) {
+        textarea {
+            scrollbar-width: thin;
+            scrollbar-color: $ruby $grey;
+        }
+    }
+    textarea {
+        overflow: auto;
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: $grey;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $ruby;
+        }
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        resize: vertical;
+        border: none;
+        border-radius: 12px;
+        outline: none;
+        background: transparent;
+        color: $ruby;
+        @extend .font-h5;
+        &::placeholder {
+            color: $darkgrey;
+        }
+    }
+}
+.language {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    .active-language {
+        div {
+            color: $ruby;
+            font-weight: bold;
+        }
+    }
+    > li {
+        list-style-type: none !important;
+        display: flex;
+        align-items: end;
+        cursor: pointer;
+        @extend .font-h5;
+        &:not(:last-child) {
+            &:after {
+                content: '|';
+                margin: 0 8px 2px 8px;
+                @media all and (max-width: $widthPad) {
+                    margin: 0 6px 2px 6px;
+                }
+            }
+        }
+    }
+}
+.button-menu {
+    @include icon($white, 24px);
+    color: $white;
+    background: transparent;
+    padding: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    &.active {
+        color: $ruby;
+        background: $white;
+        @include icon($ruby, 24px);
+    }
+}
