@@ -34,7 +34,7 @@ class TgWebhookHandler extends WebhookHandler
 
     public function start(): void
     {
-        $this->chat->markdown("*Привет!*")->send();
+        $this->buttons();
     }
 
     public function buttons(): void
@@ -52,8 +52,12 @@ class TgWebhookHandler extends WebhookHandler
         sleep(7);
         exec("fping -B 1 '192.168.7.7' -t370 -a -q", $outputPing);
 
-        if ($outputPing === '192.168.7.7')
-        $responseText = "A-Server теперь доступен";
+        if ($outputPing === '192.168.7.7'){
+            $responseText = "A-Server теперь доступен!";
+        }else{
+            $responseText = "Не удалось разбудить A-Server!";
+        }
+
 
         $this->reply('Репли сообщение!', true);
         $this->chat->edit($this->messageId)->markdown($responseText)->send();
