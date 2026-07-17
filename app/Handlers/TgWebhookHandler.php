@@ -65,7 +65,7 @@ class TgWebhookHandler extends WebhookHandler
     {
         $this->reply(json_encode('Запрос на тестирование отправлен!'));
         sleep(1);
-        exec("fping -B 3 '192.168.7.7' -t370 -a -q", $outputPing);
+        exec("fping -B 1 '192.168.7.7' -t370 -a -q", $outputPing);
 
         if (in_array('192.168.7.7', $outputPing)){
             $responseText = "A-Server доступен!";
