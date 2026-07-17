@@ -64,12 +64,13 @@ class TgWebhookHandler extends WebhookHandler
     public function testAServer(): void
     {
         $this->reply(json_encode('Запрос на тестирование отправлен!'));
-        exec("fping -B 1 '192.168.7.7' -t370 -a -q", $outputPing);
+        sleep(1);
+        exec("fping -B 3 '192.168.7.7' -t370 -a -q", $outputPing);
 
         if (in_array('192.168.7.7', $outputPing)){
             $responseText = "A-Server доступен!";
         }else{
-            $responseText = "A-Server доступен!";
+            $responseText = "A-Server не доступен!";
         }
         $this->chat->edit($this->messageId)->markdown($responseText)->send();
     }
