@@ -41,9 +41,9 @@ class TgWebhookHandler extends WebhookHandler
     {
         $this->chat->message('Выберите действие:')
             ->keyboard(Keyboard::make()->buttons([
-                Button::make("️Разбудить A-server")->action("wakeUpAServer"),
-                Button::make("️Проверить A-server")->action("testUpAServer"),
-            ])->chunk(2))->send();
+                Button::make("️Разбудить A-Server")->action("wakeUpAServer"),
+                Button::make("️Проверить A-Server")->action("testAServer"),
+            ])->chunk(1))->send();
     }
 
     public function wakeUpAServer(): void
