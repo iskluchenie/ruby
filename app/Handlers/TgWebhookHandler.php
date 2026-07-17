@@ -49,7 +49,8 @@ class TgWebhookHandler extends WebhookHandler
     public function wakeUpAServer(): void
     {
         exec("wakeonlan 44:8A:5B:24:D7:E5", $outputWakeUp);
-        sleep(7);
+        $this->reply(json_encode($outputWakeUp));
+        sleep(11);
         exec("fping -B 1 '192.168.7.7' -t370 -a -q", $outputPing);
 
         if (in_array('192.168.7.7', $outputPing)){
@@ -57,7 +58,7 @@ class TgWebhookHandler extends WebhookHandler
         }else{
             $responseText = "Не удалось разбудить A-Server! :" . json_encode($outputPing);
         }
-        $this->reply('Команда отправлена!', true);
+        $this->reply('Команда выполнена!', true);
         $this->chat->edit($this->messageId)->markdown($responseText)->send();
     }
 }
