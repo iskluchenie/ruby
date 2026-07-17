@@ -10,10 +10,10 @@ use DefStudio\Telegraph\Handlers\WebhookHandler;
 
 class TgWebhookHandler extends WebhookHandler
 {
-    protected function handleChatMessage(Stringable $text): void
-    {
-        $this->chat->html("Вы написали: $text")->send();
-    }
+//    protected function handleChatMessage(Stringable $text): void
+//    {
+//        $this->chat->html("Вы написали: $text")->send();
+//    }
 
     /** * @var string[] */
     protected array $allowedCommands = [
