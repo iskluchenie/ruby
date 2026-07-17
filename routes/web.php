@@ -11,11 +11,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__.'/settings.php';
-
-use DefStudio\Telegraph\Models\TelegraphChat;
-
-Route::get('/send-telegram', function () {
-    $chat = TelegraphChat::where('chat_id', '-5425573628')->first();
-    $chat->message('Привет!')->send();
-    return response()->json(['Сообщение успешно отправлено'], 200);
-});
