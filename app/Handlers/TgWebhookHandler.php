@@ -52,10 +52,10 @@ class TgWebhookHandler extends WebhookHandler
         sleep(7);
         exec("fping -B 1 '192.168.7.7' -t370 -a -q", $outputPing);
 
-        if ($outputPing === '192.168.7.7'){
+        if (in_array('192.168.7.7', $outputPing)){
             $responseText = "A-Server теперь доступен!";
         }else{
-            $responseText = "Не удалось разбудить A-Server! :" . $outputPing;
+            $responseText = "Не удалось разбудить A-Server! :" . json_encode($outputPing);
         }
         $this->reply('Команда отправлена!', true);
         $this->chat->edit($this->messageId)->markdown($responseText)->send();
