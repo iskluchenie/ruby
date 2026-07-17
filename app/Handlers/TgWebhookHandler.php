@@ -58,7 +58,6 @@ class TgWebhookHandler extends WebhookHandler
         }else{
             $responseText = "Не удалось разбудить A-Server! :" . json_encode($outputPing);
         }
-        $this->reply('Команда выполнена!', true);
         $this->chat->edit($this->messageId)->markdown($responseText)->send();
     }
 }
