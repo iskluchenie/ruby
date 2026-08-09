@@ -51,9 +51,9 @@ class TgWebhookHandler extends WebhookHandler
         exec("wakeonlan 44:8A:5B:24:D7:E5", $outputWakeUp);
         $this->reply('Запрос на включение отправлен!');
         sleep(11);
-        exec("fping -B 1 '192.168.7.7' -t370 -a -q", $outputPing);
+        exec("fping -B 1 '192.168.37.7' -t370 -a -q", $outputPing);
 
-        if (in_array('192.168.7.7', $outputPing)){
+        if (in_array('192.168.37.7', $outputPing)){
             $responseText = "A-Server теперь доступен!";
         }else{
             $responseText = "Не удалось разбудить A-Server! :" . json_encode($outputPing);
@@ -65,9 +65,9 @@ class TgWebhookHandler extends WebhookHandler
     {
         $this->reply(json_encode('Запрос на тестирование отправлен!'));
         sleep(1);
-        exec("fping -B 1 '192.168.7.7' -t370 -a -q", $outputPing);
+        exec("fping -B 1 '192.168.37.7' -t370 -a -q", $outputPing);
 
-        if (in_array('192.168.7.7', $outputPing)){
+        if (in_array('192.168.37.7', $outputPing)){
             $responseText = "A-Server доступен!";
         }else{
             $responseText = "A-Server не доступен!";
