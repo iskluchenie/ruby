@@ -43,6 +43,8 @@ class TgWebhookHandler extends WebhookHandler
             ->keyboard(Keyboard::make()->buttons([
                 Button::make("️Разбудить A-Server")->action("wakeUpAServer"),
                 Button::make("️Проверить A-Server")->action("testAServer"),
+                Button::make("️Разбудить H-Server")->action("wakeUpHServer"),
+                Button::make("️Проверить H-Server")->action("testHServer"),
             ])->chunk(1))->send();
     }
 
@@ -71,6 +73,35 @@ class TgWebhookHandler extends WebhookHandler
             $responseText = "A-Server доступен!";
         }else{
             $responseText = "A-Server не доступен!";
+        }
+        $this->chat->edit($this->messageId)->markdown($responseText)->send();
+    }
+
+    public function wakeUpHServer(): void
+    {
+        exec("wakeonlan D4:3D:7E:E1:75:BD", $outputWakeUp);
+        $this->reply('Запрос на включение отправлен!');
+        sleep(11);
+        exec("fping -B 1 '192.168.37.50' -t370 -a -q", $outputPing);
+
+        if (in_array('192.168.37.50', $outputPing)){
+            $responseText = "H-Server теперь доступен!";
+        }else{
+            $responseText = "Не удалось разбудить H-Server! :" . json_encode($outputPing);
+        }
+        $this->chat->edit($this->messageId)->markdown($responseText)->send();
+    }
+
+    public function testHServer(): void
+    {
+        $this->reply(json_encode('Запрос на тестирование отправлен!'));
+        sleep(1);
+        exec("fping -B 1 '192.168.37.50' -t370 -a -q", $outputPing);
+
+        if (in_array('192.168.37.50', $outputPing)){
+            $responseText = "H-Server доступен!";
+        }else{
+            $responseText = "H-Server не доступен!";
         }
         $this->chat->edit($this->messageId)->markdown($responseText)->send();
     }
